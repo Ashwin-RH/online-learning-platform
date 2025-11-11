@@ -41,15 +41,26 @@ router.post("/", verifyToken, async (req, res) => {
   }
 });
 
-// ➤ Get all courses
-router.get("/", async (req, res) => {
+
+// ➤ Get courses
+router.get("/", verifyToken, async (req, res) => {
   try {
-    const courses = await Course.find().populate("instructor", "name email");
+    let courses;
+
+    if (req.user.role === "instructor") {
+      // Only return courses created by this instructor
+      courses = await Course.find({ instructor: req.user.id }).populate("instructor", "name email");
+    } else {
+      // Admin or student sees all courses
+      courses = await Course.find().populate("instructor", "name email");
+    }
+
     res.json(courses);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 // ➤ Get course by ID
 router.get("/:id", async (req, res) => {

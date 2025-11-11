@@ -13,12 +13,16 @@ export default function Dashboard() {
   const token = localStorage.getItem("token");
 
   // Fetch all courses (instructors see all, ideally their own)
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/courses")
-      .then((res) => setCourses(res.data))
-      .catch((err) => console.error(err));
-  }, []);
+useEffect(() => {
+  axios
+    .get("http://localhost:5000/courses", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => setCourses(res.data))
+    .catch((err) => console.error(err));
+}, [token]);
+
+
 
   // Add new course
   const handleCreate = async (e) => {

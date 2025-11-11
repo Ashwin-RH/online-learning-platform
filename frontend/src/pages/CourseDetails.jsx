@@ -16,9 +16,12 @@ export default function CourseDetails() {
 
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
- useEffect(() => {
+useEffect(() => {
+  const token = localStorage.getItem("token");
   axios
-    .get(`${API_BASE_URL}/courses/${id}`)
+    .get(`${API_BASE_URL}/courses/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((res) => {
       const videoUrl = res.data.videos[0];
       const embedUrl = videoUrl.includes("watch?v=")
@@ -28,8 +31,11 @@ export default function CourseDetails() {
       setCourse(res.data);
       setCurrentVideo(embedUrl);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error("Failed to fetch course details:", err);
+    });
 }, [id]);
+
 
   // Fetch existing progress
   useEffect(() => {

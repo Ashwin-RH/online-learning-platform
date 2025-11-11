@@ -43,15 +43,25 @@ router.post("/", verifyToken, async (req, res) => {
 
 
 // ➤ Get courses
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let courses;
 
-    if (req.user.role === "instructor") {
-      // Only return courses created by this instructor
-      courses = await Course.find({ instructor: req.user.id }).populate("instructor", "name email");
+    const authHeader = req.headers.authorization;
+    let user = null;
+
+    if (authHeader) {
+      try {
+        const token = authHeader.split(" ")[1];
+        user = jwt.verify(token, process.env.JWT_SECRET);
+      } catch {
+        user = null;
+      }
+    }
+
+    if (user && user.role === "instructor") {
+      courses = await Course.find({ instructor: user.id }).populate("instructor", "name email");
     } else {
-      // Admin or student sees all courses
       courses = await Course.find().populate("instructor", "name email");
     }
 
@@ -60,6 +70,7 @@ router.get("/", verifyToken, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 // ➤ Get course by ID

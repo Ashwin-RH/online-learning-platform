@@ -1,17 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getUserFromToken, isAuthenticated } from "../utils/auth";
 import { LogOut } from 'lucide-react';
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const user = getUserFromToken();
   const loggedIn = isAuthenticated();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+const handleLogout = () => {
+  toast.success("Logging out...");
+
+  setTimeout(() => {
     localStorage.removeItem("token");
     navigate("/login");
     window.location.reload();
-  };
+    toast.success("Logged out successfully!");
+  }, 2000); // 2 seconds delay
+};
+
 
   return (
     <nav

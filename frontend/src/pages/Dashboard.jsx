@@ -93,31 +93,32 @@ const handleQuizSubmit = async (courseId) => {
     if (!updatedTitle) return;
     try {
       await axios.put(
-        `http://localhost:5000/courses/${id}`,
+        `${API_BASE_URL}/courses/${id}`,
         { title: updatedTitle },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setMessage("✅ Course updated!");
-      const refreshed = await axios.get("http://localhost:5000/courses");
+      const refreshed = await axios.get(`${API_BASE_URL}/courses`);
       setCourses(refreshed.data);
     } catch {
       setMessage("❌ Failed to update course.");
     }
   };
 
-  // Delete course
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this course?")) return;
-    try {
-      await axios.delete(`http://localhost:5000/courses/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setMessage("🗑️ Course deleted!");
-      setCourses(courses.filter((c) => c._id !== id));
-    } catch {
-      setMessage("❌ Failed to delete course.");
-    }
-  };
+  if (!window.confirm("Delete this course?")) return;
+
+  try {
+    await axios.delete(`${API_BASE_URL}/courses/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    toast.success("✅ Course deleted!");
+    setCourses(courses.filter((c) => c._id !== id));
+  } catch (error) {
+    console.error("Error deleting course:", error);
+    toast.error("❌ Failed to delete course.");
+  }
+};
 
   // Add new video input field
   const addVideoField = () => {
@@ -157,7 +158,7 @@ const handleQuizSubmit = async (courseId) => {
   try {
     // 1️⃣ Create the course first
     const createRes = await axios.post(
-      "http://localhost:5000/courses",
+      `${API_BASE_URL}/courses`,
       { title: form.title, description: form.description },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -170,7 +171,7 @@ const handleQuizSubmit = async (courseId) => {
     formData.append("video", file);
 
     const uploadRes = await axios.post(
-      `http://localhost:5000/upload/${courseId}/video`,
+      `${API_BASE_URL}/upload/${courseId}/video`,
       formData,
       {
         headers: {
@@ -184,7 +185,7 @@ const handleQuizSubmit = async (courseId) => {
     console.log("🎬 Uploaded video:", uploadRes.data.url);
 
     // 3️⃣ Refresh UI
-    const refreshed = await axios.get("http://localhost:5000/courses");
+    const refreshed = await axios.get(`${API_BASE_URL}/courses`);
     setCourses(refreshed.data);
     setForm({ title: "", description: "", videos: [""] });
     e.target.reset();
@@ -385,7 +386,7 @@ const handleQuizSubmit = async (courseId) => {
 
               </div>
               {/* 🎬 Upload Video Section */}
-<div className="bg-gray-800/40 p-4 rounded-xl backdrop-blur-sm border border-gray-700/30 shadow-lg shadow-black/20 mt-6">
+<div className="bg-gray-800/40 p-4 rounded-xl backdrop-blur-sm border border-gray-700/30 shadow-lg shadow-black/20 mt-4">
   <h4 className="text-lg jura-semibold text-amber-400 mb-3 flex justify-between items-center">
     <span>Upload Course Video</span>
     {course.videos?.length > 0 && (
@@ -407,7 +408,7 @@ const handleQuizSubmit = async (courseId) => {
 
       try {
   const res = await axios.post(
-    `http://localhost:5000/upload/${course._id}/video`,
+    `${API_BASE_URL}/upload/${course._id}/video`,
     formData,
     {
       headers: {
@@ -433,7 +434,7 @@ setTimeout(() => {
 
 
   // 🔁 Refresh courses
-  const refreshed = await axios.get("http://localhost:5000/courses");
+  const refreshed = await axios.get(`${API_BASE_URL}/courses`);
   setCourses(refreshed.data);
 
 } catch (err) {
@@ -528,13 +529,13 @@ setTimeout(() => {
                       const updatedVideos = course.videos.filter(
                         (_, i) => i !== idx
                       );
-                      await axios.delete(`http://localhost:5000/upload/${course._id}/video`, {
+                      await axios.delete(`${API_BASE_URL}/upload/${course._id}/video`, {
                         headers: { Authorization: `Bearer ${token}` },
                         data: { fileUrl: url },
                       });
 
                       const refreshed = await axios.get(
-                        "http://localhost:5000/courses"
+                        `${API_BASE_URL}/courses`
                       );
                       setCourses(refreshed.data);
                     } catch (err) {

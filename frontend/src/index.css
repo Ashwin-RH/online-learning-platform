@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Montserrat:wght@500&display=swap');
+@import "tailwindcss";
+
+.jura{
+  font-family: 'Jura', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.jura-light{
+  font-family: 'Jura', sans-serif;
+  font-weight: 300;
+}
+
+.jura-regular{
+  font-family: 'Jura', sans-serif;
+  font-weight: 400;
+}
+.jura-medium{
+  font-family: 'Jura', sans-serif;
+  font-weight: 500;
+}
+.jura-semibold{
+  font-family: 'Jura', sans-serif;
+  font-weight: 600;
+}
+.jura-bold{
+  font-family: 'Jura', sans-serif;
+  font-weight: 700;
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+}

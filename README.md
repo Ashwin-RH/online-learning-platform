@@ -88,7 +88,6 @@ online-learning-platform/
 ├── .env.example
 ├── README.md
 └── package.json
-
 ```
 ---
 

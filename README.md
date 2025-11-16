@@ -100,7 +100,7 @@ git clone https://github.com/your-username/online-learning-platform.git
 cd online-learning-platform
 ```
 
-###2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 ```
 Backend
 cd server
@@ -111,7 +111,7 @@ cd ../client
 npm install
 ```
 
-###3️⃣ Add Environment Variables
+### 3️⃣ Add Environment Variables
 ```
 Create server/.env (use .env.example as reference):
 
@@ -122,7 +122,7 @@ CLOUDINARY_SECRET=xxx
 CLOUDINARY_NAME=xxx
 ```
 
-###4️⃣ Run the App
+### 4️⃣ Run the App
 ```
 Backend
 cd server
@@ -133,7 +133,7 @@ cd client
 npm start
 ```
 
-###🧪 API Endpoints (Summary)
+### 🧪 API Endpoints (Summary)
 ```
 Auth
 POST /auth/register
@@ -155,7 +155,7 @@ GET  /quiz/:courseId
 POST /quiz/submit/:courseId
 ```
 
-###📦 Future Enhancements
+### 📦 Future Enhancements
 
 - AI-based course recommendations
 - WebRTC live classes

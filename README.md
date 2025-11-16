@@ -98,8 +98,10 @@ online-learning-platform/
 ```bash
 git clone https://github.com/your-username/online-learning-platform.git
 cd online-learning-platform
+```
 
-2️⃣ Install Dependencies
+###2️⃣ Install Dependencies
+```
 Backend
 cd server
 npm install
@@ -107,9 +109,10 @@ npm install
 Frontend
 cd ../client
 npm install
+```
 
-3️⃣ Add Environment Variables
-
+###3️⃣ Add Environment Variables
+```
 Create server/.env (use .env.example as reference):
 
 MONGO_URI=your_mongodb_uri
@@ -117,8 +120,10 @@ JWT_SECRET=your_secret
 CLOUDINARY_KEY=xxx
 CLOUDINARY_SECRET=xxx
 CLOUDINARY_NAME=xxx
+```
 
-4️⃣ Run the App
+###4️⃣ Run the App
+```
 Backend
 cd server
 npm run dev
@@ -126,32 +131,34 @@ npm run dev
 Frontend
 cd client
 npm start
+```
 
-🧪 API Endpoints (Summary)
+###🧪 API Endpoints (Summary)
+```
 Auth
 POST /auth/register
 POST /auth/login
 PUT  /auth/change-password
+```
 
+```
 Courses
 GET    /courses
 POST   /courses
 PUT    /courses/:id
 DELETE /courses/:id
-
+```
+```
 Quiz
 POST /quiz/:courseId
 GET  /quiz/:courseId
 POST /quiz/submit/:courseId
+```
 
-📦 Future Enhancements
+###📦 Future Enhancements
 
-AI-based course recommendations
-
-WebRTC live classes
-
-Discussion forums
-
-Certificates after completion
-
-Payment gateway integration
+- AI-based course recommendations
+- WebRTC live classes
+- Discussion forums
+- Certificates after completion
+- Payment gateway integration

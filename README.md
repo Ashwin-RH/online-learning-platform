@@ -135,21 +135,21 @@ npm start
 
 ### 🧪 API Endpoints (Summary)
 ```
-Auth
+- Auth
 POST /auth/register
 POST /auth/login
 PUT  /auth/change-password
 ```
 
 ```
-Courses
+- Courses
 GET    /courses
 POST   /courses
 PUT    /courses/:id
 DELETE /courses/:id
 ```
 ```
-Quiz
+- Quiz
 POST /quiz/:courseId
 GET  /quiz/:courseId
 POST /quiz/submit/:courseId

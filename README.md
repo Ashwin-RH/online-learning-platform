@@ -112,9 +112,9 @@ npm install
 ```
 
 ### 3️⃣ Add Environment Variables
-```
-Create server/.env (use .env.example as reference):
 
+#### Create server/.env (use .env.example as reference):
+```
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_secret
 CLOUDINARY_KEY=xxx
@@ -123,13 +123,14 @@ CLOUDINARY_NAME=xxx
 ```
 
 ### 4️⃣ Run the App
+#### Backend
 ```
-Backend
-cd server
+cd backend
 npm run dev
-
-Frontend
-cd client
+```
+#### Frontend
+```
+cd frontend
 npm start
 ```
 
@@ -141,15 +142,15 @@ POST /auth/login
 PUT  /auth/change-password
 ```
 
+#### Courses
 ```
-- Courses
 GET    /courses
 POST   /courses
 PUT    /courses/:id
 DELETE /courses/:id
 ```
+#### Quiz
 ```
-- Quiz
 POST /quiz/:courseId
 GET  /quiz/:courseId
 POST /quiz/submit/:courseId

@@ -66,7 +66,7 @@ A full-stack web application that allows users to learn through interactive cour
 ---
 
 ## 📁 Folder Structure
-
+```
 online-learning-platform/
 │
 ├── client/               # React frontend
@@ -89,7 +89,7 @@ online-learning-platform/
 ├── README.md
 └── package.json
 
-
+```
 ---
 
 ## ⚙️ Setup Instructions

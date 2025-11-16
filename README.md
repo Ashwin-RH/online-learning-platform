@@ -100,13 +100,15 @@ cd online-learning-platform
 ```
 
 ### 2️⃣ Install Dependencies
+#### Backend
 ```
-Backend
-cd server
+cd backend
 npm install
+```
 
-Frontend
-cd ../client
+#### Frontend
+```
+cd frontend
 npm install
 ```
 

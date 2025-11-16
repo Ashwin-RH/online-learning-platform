@@ -46,7 +46,12 @@ export default function Courses() {
               className="bg-gray-900 hover:shadow-2xl hover:-translate-y-0.5 hover:shadow-blue-500/15 rounded-xl p-4 border border-gray-700 hover:border-gray-600 will-change-transform transition-all duration-500"
             >
               <h3 className="jura-semibold will-change-transform text-gray-200/80 text-lg">{course.title}</h3>
-              <p className="text-gray-500 jura-regular will-change-transform">{course.description}</p>
+              <p className="text-gray-500 jura-regular will-change-transform">
+  {course.description.length > 100
+    ? course.description.slice(0, 100) + "..."
+    : course.description}
+</p>
+
              <p className="text-md mt-2 will-change-transform">
               <span className="text-green-500/80 jura-medium">Instructor:</span>{" "}
               <span className="text-gray-200/70 jura-semibold">

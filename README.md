@@ -134,8 +134,8 @@ npm start
 ```
 
 ### 🧪 API Endpoints (Summary)
+#### Auth
 ```
-- Auth
 POST /auth/register
 POST /auth/login
 PUT  /auth/change-password
